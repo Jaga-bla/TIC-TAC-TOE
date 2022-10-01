@@ -30,6 +30,10 @@ def main():
             if event.type == pygame.QUIT:
                 sys.exit()
             elif event.type == pygame.MOUSEBUTTONDOWN:
+                if counter == 9:
+                    counter = 0
+                    screen.blit(bg, (0, 0))
+                    pygame.display.flip()
                 if (counter % 2) == 0:
                     counter += 1
                     o.draw_o(o, screen)
