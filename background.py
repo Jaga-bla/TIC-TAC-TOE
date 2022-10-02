@@ -26,31 +26,26 @@ class CrissCross:
 
 cross = pygame.Rect(200, 100, 161, 100)
 circle = pygame.Rect(200, 100, 161, 100)
-counter = 0
 
 while 1:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            if counter == 15:
-                screen.fill((0,0,0))
-            elif (counter % 2) == 0:
-                for rect in CrissCross.list_rect:
-                    if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()) == True:
-                        counter += 1
-                        cross.center = rect.center
-                        pygame.draw.rect(background, (0, 100, 255), cross, 2)
-                        pygame.display.flip()
-                        CrissCross.list_rect.remove(rect)
-            elif (counter % 2) != 0:
-                pos = (random.randint(0,x), random.randint(0,x))
-                for rect in CrissCross.list_rect:
-                    if pygame.Rect.collidepoint(rect, pos) == True:
-                        counter += 1
-                        circle.center = rect.center
-                        pygame.draw.rect(background, (0, 0, 0), circle, 2)
-                        pygame.display.flip()
-                        CrissCross.list_rect.remove(rect)
+            screen.fill((0,0,0))
+            for rect in CrissCross.list_rect:
+                if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()) == True:
+                    cross.center = rect.center
+                    pygame.draw.rect(background, (0, 100, 255), cross, 2)
+                    pygame.display.flip()
+                    new_list = CrissCross.list_rect
+                    new_list.remove(rect)
+            pos = (random.randint(0,x), random.randint(0,x))
+            for rect in new_list:
+                if pygame.Rect.collidepoint(rect, pos) == True:
+                    circle.center = rect.center
+                    pygame.draw.rect(background, (0, 0, 0), circle, 2)
+                    pygame.display.flip()
+                    new_list.remove(rect)
     screen.blit(background, (0, 0))
     pygame.display.flip()
