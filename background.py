@@ -32,20 +32,20 @@ while 1:
         if event.type == pygame.QUIT:
             sys.exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            screen.fill((0,0,0))
             for rect in CrissCross.list_rect:
-                if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()) == True:
+                if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()):
                     cross.center = rect.center
                     pygame.draw.rect(background, (0, 100, 255), cross, 2)
                     pygame.display.flip()
                     new_list = CrissCross.list_rect
                     new_list.remove(rect)
-            pos = (random.randint(0,x), random.randint(0,x))
+                    random_rect = random.choice(new_list)
             for rect in new_list:
-                if pygame.Rect.collidepoint(rect, pos) == True:
+                if pygame.Rect.colliderect(rect, random_rect):
                     circle.center = rect.center
                     pygame.draw.rect(background, (0, 0, 0), circle, 2)
                     pygame.display.flip()
                     new_list.remove(rect)
+                    break
     screen.blit(background, (0, 0))
     pygame.display.flip()
