@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 pygame.init()
 
 x = 600
@@ -8,21 +9,6 @@ background = pygame.Surface(screen.get_size())
 background = background.convert()
 background.fill((0, 0, 0))
 white = (220,220,220)
-
-class XO:
-    cross = pygame.image.load('cross.png')
-    circle = pygame.image.load('circle.png')
-    DEFAULT_IMAGE_SIZE = (50, 50)
-    cross = pygame.transform.scale(cross, DEFAULT_IMAGE_SIZE)
-    circle = pygame.transform.scale(circle, DEFAULT_IMAGE_SIZE)
-    def draw_x(self, screen):
-        pos = pygame.mouse.get_pos()
-        screen.blit(self.cross, (pos))
-        pygame.display.flip()
-    def draw_o(self, screen):
-        pos = pygame.mouse.get_pos()
-        screen.blit(self.circle, (pos))
-        pygame.display.flip()
 
 class CrissCross:
     #each value represents different rectiangle, e.g lt = left top
@@ -37,16 +23,34 @@ class CrissCross:
     dr = pygame.draw.rect(background, white, (x/3*2 + 2,  x/3*2 +2, x/3, x/3))
     list_rect = [lt,mt,rt,ml,mm,mr,dl,dm,dr]
     # def draw_item(self, position):
-        
-x = XO
+
+cross = pygame.Rect(200, 100, 161, 100)
+circle = pygame.Rect(200, 100, 161, 100)
+counter = 0
+
 while 1:
     for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                for rect in CrissCross().list_rect:
-                    if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()):
-                        x.draw_x(x, background)
-
+        if event.type == pygame.QUIT:
+            sys.exit()
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            if counter == 15:
+                screen.fill((0,0,0))
+            elif (counter % 2) == 0:
+                for rect in CrissCross.list_rect:
+                    if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()) == True:
+                        counter += 1
+                        cross.center = rect.center
+                        pygame.draw.rect(background, (0, 100, 255), cross, 2)
+                        pygame.display.flip()
+                        CrissCross.list_rect.remove(rect)
+            elif (counter % 2) != 0:
+                pos = (random.randint(0,x), random.randint(0,x))
+                for rect in CrissCross.list_rect:
+                    if pygame.Rect.collidepoint(rect, pos) == True:
+                        counter += 1
+                        circle.center = rect.center
+                        pygame.draw.rect(background, (0, 0, 0), circle, 2)
+                        pygame.display.flip()
+                        CrissCross.list_rect.remove(rect)
     screen.blit(background, (0, 0))
     pygame.display.flip()
