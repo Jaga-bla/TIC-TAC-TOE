@@ -34,7 +34,6 @@ while 1:
                 if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()):
                     cross.center = rect.center
                     pygame.draw.rect(background, (0, 100, 255), cross, 5)
-                    pygame.display.flip()
                     new_list = CrissCross.list_rect()
                     new_list.remove(rect)
                     random_rect = random.choice(new_list)
@@ -42,7 +41,6 @@ while 1:
                 if pygame.Rect.colliderect(rect, random_rect):
                     circle.center = rect.center
                     pygame.draw.rect(background, (0, 0, 0), circle, 5)
-                    pygame.display.flip()
                     new_list.remove(rect)
                     break
     screen.blit(background, (0, 0))
