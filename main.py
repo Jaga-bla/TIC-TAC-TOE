@@ -54,8 +54,6 @@ def draw_cross(background, center_point):
 def draw_circle(background, center_point):
     pygame.draw.circle(background, (0,0,0), center_point, 45, 7)
 
-circle = pygame.Rect(200, 100, 161, 100)
-
 def main():
     pygame.init()
     x = 600
