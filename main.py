@@ -74,13 +74,19 @@ def main():
                 text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Congratulations, you won!', True, (0,0,0))
                 background.blit(text, (x/4, x/4))
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    main()
+                    background.fill((0, 0, 0))
+                    list_rect = create_list(background, y)
+                    map = create_map(background, y)
+                    counter = 0
             elif counter == 9:
                 background.fill((220,220,220))
                 text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Looser', True, (0,0,0))
                 background.blit(text, (x/4, x/4))
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    main()
+                    background.fill((0, 0, 0))
+                    list_rect = create_list(background, y)
+                    map = create_map(background, y)
+                    counter = 0
             elif counter < 9:
                 try:
                     if event.type == pygame.MOUSEBUTTONDOWN:
