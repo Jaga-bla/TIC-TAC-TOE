@@ -2,19 +2,19 @@ import pygame
 import sys
 import random
 
-def create_list(background, white, y):
+def create_list(background, y):
     list_rect = []
     for i in range(3):
         for j in range(3):
-            rect = pygame.draw.rect(background, white, ((y+1)*i,(y+1)*j, y, y))
+            rect = pygame.draw.rect(background, (220,220,220), ((y+1)*i,(y+1)*j, y, y))
             list_rect.append(rect)
     return list_rect
 
-def create_map(background, white, y):
+def create_map(background, y):
     map = []
     for i in range(3):
         for j in range(3):
-            rect = pygame.draw.rect(background, white, ((y+1)*i,(y+1)*j, y, y))
+            rect = pygame.draw.rect(background, (220,220,220), ((y+1)*i,(y+1)*j, y, y))
             map.append([rect, 0])
     return map
 
@@ -62,31 +62,46 @@ def main():
     background = pygame.Surface(screen.get_size())
     background = background.convert()
     background.fill((0, 0, 0))
-    white = (220,220,220)
-    list_rect = create_list(background, white, y)
-    map = create_map(background, white, y)
+    list_rect = create_list(background, y)
+    map = create_map(background, y)
+    counter = 0
     while 1:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                for rect in list_rect:
-                    if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()):
-                        center_point = rect.center
-                        draw_cross(background, center_point)
-                        change_map_value(rect, map)
-                        new_list = list_rect
-                        new_list.remove(rect)
-                        random_rect = random.choice(new_list)
-                        if is_winning(map) == True:
-                            sys.exit()
-            elif event.type == pygame.MOUSEBUTTONUP:
-                for rect in new_list:
-                    if pygame.Rect.colliderect(rect, random_rect):
-                        center_point = rect.center
-                        draw_circle(background, center_point)
-                        new_list.remove(rect)
-                        break
+            if is_winning(map) == True:
+                background.fill((220,220,220))
+                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Congratulations, you won!', True, (0,0,0))
+                background.blit(text, (x/4, x/4))
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    main()
+            elif counter == 9:
+                background.fill((220,220,220))
+                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Looser', True, (0,0,0))
+                background.blit(text, (x/4, x/4))
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    main()
+            elif counter < 9:
+                try:
+                    if event.type == pygame.MOUSEBUTTONDOWN:
+                        for rect in list_rect:
+                            if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()):
+                                counter += 1
+                                center_point = rect.center
+                                draw_cross(background, center_point)
+                                change_map_value(rect, map)
+                                new_list = list_rect
+                                new_list.remove(rect)
+                                random_rect = random.choice(new_list)
+                    elif event.type == pygame.MOUSEBUTTONUP:
+                        for rect in new_list:
+                            if pygame.Rect.colliderect(rect, random_rect):
+                                counter += 1
+                                center_point = rect.center
+                                draw_circle(background, center_point)
+                                new_list.remove(rect)
+                except:
+                    break
         screen.blit(background, (0, 0))
         pygame.display.flip()
 
