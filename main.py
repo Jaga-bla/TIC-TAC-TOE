@@ -23,6 +23,11 @@ def change_map_value(rect, map):
         if i[0] == rect:
             i[1] = 1
 
+def change_map_value_enemy(rect, map):
+    for i in map:
+        if i[0] == rect:
+            i[1] = -1
+
 def is_winning(map):
     if map[0][1] == 1 and map[1][1]==1 and map [2][1] == 1:
         return True
@@ -39,6 +44,24 @@ def is_winning(map):
     elif map[0][1] == 1 and map[4][1]==1 and map [8][1] == 1:
         return True
     elif map[2][1] == 1 and map[4][1]==1 and map [6][1] == 1:
+        return True
+
+def is_loosing(map):
+    if map[0][1] == -1 and map[1][1]== -1 and map [2][1] == -1:
+        return True
+    elif map[3][1] == -1 and map[4][1]== -1 and map [5][1] == -1:
+        return True
+    elif map[6][1] == -1 and map[7][1]== -1 and map [8][1] == -1:
+        return True
+    elif map[0][1] == -1 and map[3][1]== -1 and map [6][1] == -1:
+        return True
+    elif map[1][1] == -1 and map[4][1]== -1 and map [7][1] == -1:
+        return True
+    elif map[2][1] == -1 and map[5][1]== -1 and map [8][1] == -1:
+        return True
+    elif map[0][1] == -1 and map[4][1]== -1 and map [8][1] == -1:
+        return True
+    elif map[2][1] == -1 and map[4][1]== -1 and map [6][1] == -1:
         return True
 
 def draw_cross(background, center_point):
@@ -79,6 +102,12 @@ def main():
                 background.blit(text, (x/4, x/4))
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     list_rect, map, counter = initialize_background(background, y)
+            elif is_loosing(map) == True:
+                background.fill((220,220,220))
+                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Your enemy won the game!', True, (0,0,0))
+                background.blit(text, (x/4, x/4))
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    list_rect, map, counter = initialize_background(background, y)
             elif counter == 9:
                 background.fill((220,220,220))
                 text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Looser', True, (0,0,0))
@@ -105,6 +134,7 @@ def main():
                                     counter += 1
                                     center_point = rect.center
                                     draw_circle(background, center_point)
+                                    change_map_value_enemy(rect, map)
                                     new_list.remove(rect)
                 except:
                     break   
