@@ -29,39 +29,39 @@ def change_map_value_enemy(rect, map):
             i[1] = -1
 
 def is_winning(map):
-    if map[0][1] == 1 and map[1][1]==1 and map [2][1] == 1:
+    if map[0][1] ==1 and map[1][1]==1 and map [2][1] ==1:
         return True
-    elif map[3][1] == 1 and map[4][1]==1 and map [5][1] == 1:
+    elif map[3][1] ==1 and map[4][1]==1 and map [5][1] ==1:
         return True
-    elif map[6][1] == 1 and map[7][1]==1 and map [8][1] == 1:
+    elif map[6][1] ==1 and map[7][1]==1 and map [8][1] ==1:
         return True
-    elif map[0][1] == 1 and map[3][1]==1 and map [6][1] == 1:
+    elif map[0][1] ==1 and map[3][1]==1 and map [6][1] ==1:
         return True
-    elif map[1][1] == 1 and map[4][1]==1 and map [7][1] == 1:
+    elif map[1][1] ==1 and map[4][1]==1 and map [7][1] ==1:
         return True
-    elif map[2][1] == 1 and map[5][1]==1 and map [8][1] == 1:
+    elif map[2][1] ==1 and map[5][1]==1 and map [8][1] ==1:
         return True
-    elif map[0][1] == 1 and map[4][1]==1 and map [8][1] == 1:
+    elif map[0][1] ==1 and map[4][1]==1 and map [8][1] ==1:
         return True
-    elif map[2][1] == 1 and map[4][1]==1 and map [6][1] == 1:
+    elif map[2][1] ==1 and map[4][1]==1 and map [6][1] ==1:
         return True
 
 def is_loosing(map):
-    if map[0][1] == -1 and map[1][1]== -1 and map [2][1] == -1:
+    if map[0][1] ==-1 and map[1][1]==-1 and map [2][1] ==-1:
         return True
-    elif map[3][1] == -1 and map[4][1]== -1 and map [5][1] == -1:
+    elif map[3][1] ==-1 and map[4][1]==-1 and map [5][1] ==-1:
         return True
-    elif map[6][1] == -1 and map[7][1]== -1 and map [8][1] == -1:
+    elif map[6][1] ==-1 and map[7][1]==-1 and map [8][1] ==-1:
         return True
-    elif map[0][1] == -1 and map[3][1]== -1 and map [6][1] == -1:
+    elif map[0][1] ==-1 and map[3][1]==-1 and map [6][1] ==-1:
         return True
-    elif map[1][1] == -1 and map[4][1]== -1 and map [7][1] == -1:
+    elif map[1][1] ==-1 and map[4][1]==-1 and map [7][1] ==-1:
         return True
-    elif map[2][1] == -1 and map[5][1]== -1 and map [8][1] == -1:
+    elif map[2][1] ==-1 and map[5][1]==-1 and map [8][1] ==-1:
         return True
-    elif map[0][1] == -1 and map[4][1]== -1 and map [8][1] == -1:
+    elif map[0][1] ==-1 and map[4][1]==-1 and map [8][1] ==-1:
         return True
-    elif map[2][1] == -1 and map[4][1]== -1 and map [6][1] == -1:
+    elif map[2][1] ==-1 and map[4][1]==-1 and map [6][1] ==-1:
         return True
 
 def draw_cross(background, center_point):
