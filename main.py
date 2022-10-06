@@ -69,20 +69,20 @@ def main():
                 sys.exit()
             if is_winning(map, 1) == True:
                 background.fill((220,220,220))
-                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Congratulations, you won!', True, (0,0,0))
-                background.blit(text, (x/4, x/4))
+                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), 'Congratulations, you won!', True, (0,0,0))
+                background.blit(text, (x/6, x/2))
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     list_rect, map, counter = initialize_background(background, y)
             elif is_winning(map, -1) == True:
                 background.fill((220,220,220))
-                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Your enemy won the game!', True, (0,0,0))
-                background.blit(text, (x/4, x/4))
+                text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), 'Your enemy won the game!', True, (0,0,0))
+                background.blit(text, (x/6, x/2))
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     list_rect, map, counter = initialize_background(background, y)
             elif counter == 9:
                 background.fill((220,220,220))
                 text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), f'Looser', True, (0,0,0))
-                background.blit(text, (x/4, x/4))
+                background.blit(text, (x/6, x/2))
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     list_rect, map, counter = initialize_background(background, y)
             elif counter < 9:
@@ -92,8 +92,7 @@ def main():
                             for rect in list_rect:
                                 if pygame.Rect.collidepoint(rect, pygame.mouse.get_pos()):
                                     counter += 1
-                                    center_point = rect.center
-                                    draw_cross(background, center_point)
+                                    draw_cross(background, rect.center)
                                     change_field_value(rect, map, 1)
                                     new_list = list_rect
                                     new_list.remove(rect)
@@ -103,8 +102,7 @@ def main():
                             for rect in new_list:
                                 if pygame.Rect.colliderect(rect, random_rect):
                                     counter += 1
-                                    center_point = rect.center
-                                    draw_circle(background, center_point)
+                                    draw_circle(background, rect.center)
                                     change_field_value(rect, map, -1)
                                     new_list.remove(rect)
                 except:
