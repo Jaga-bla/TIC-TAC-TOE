@@ -1,6 +1,6 @@
 import pygame
 import sys
-import random
+from ai import choice_ai
 
 def fields_list(background, y) -> list:
     list_rect = []
@@ -25,15 +25,14 @@ def change_field_value(rect, map, n):
 
 def is_winning(map, n):
     for j in range(0,7,3):
-        if map[0+j][1] ==n and map[1+j][1]==n and map [2+j][1] ==n:
+        if map[0+j][1] ==n and map[1+j][1]==n and map[2+j][1] ==n:
             return True
     for j in range(3):
-        if map[0+j][1] ==n and map[3+j][1]==n and map [6+j][1] ==n:
+        if map[0+j][1] ==n and map[3+j][1]==n and map[6+j][1] ==n:
             return True
     for j in range(0,3,2):
-        if map[0+j][1] ==n and map[4][1]==n and map [8-j][1] ==n:
+        if map[0+j][1] ==n and map[4][1]==n and map[8-j][1] ==n:
             return True
-
         
 def draw_cross(background, center_point):
     pygame.draw.lines(background, (0,0,0), False, 
@@ -96,7 +95,7 @@ def main():
                                     change_field_value(rect, map, 1)
                                     new_list = list_rect
                                     new_list.remove(rect)
-                                    random_rect = random.choice(new_list)
+                                    random_rect = choice_ai(map, new_list)
                     elif event.type == pygame.MOUSEBUTTONUP:
                         if (counter%2)!=0:
                             for rect in new_list:
