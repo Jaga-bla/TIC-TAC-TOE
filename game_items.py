@@ -3,7 +3,7 @@ import pygame
 x = 600 #side lenght of the screen square
 y = x/3 #side lenght of the field square
 
-#create the background for all the components
+#create the background for all components
 screen = pygame.display.set_mode((x, x))
 background = pygame.Surface(screen.get_size())
 background = background.convert()
