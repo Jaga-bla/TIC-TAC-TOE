@@ -1,6 +1,6 @@
 import random
 
-def choice_ai(map, new_list):
+def choice_ai(map, empty_fields_list):
     for j in range(0,7,3):
         if map[0+j][1] ==1 and map[1+j][1]==1 and map[2+j][1] ==0:
             return map[2+j][0]
@@ -29,5 +29,5 @@ def choice_ai(map, new_list):
         if map[0+j][1] ==1 and map[4][1]==0 and map[8-j][1] ==1:
             return map[4][0]
     else:
-        return random.choice(new_list)
+        return random.choice(empty_fields_list)
 
