@@ -22,12 +22,12 @@ def add_field_value() -> list:
             map.append([rect, 0])
     return map
 
-def change_field_value(rect, map, n):
+def change_field_value(rect, map:list, n:int):
     for i in map:
         if i[0] == rect:
             i[1] = n
 
-def is_winning(map, n):
+def is_winning(map:list, n:int)->bool:
     for j in range(0,7,3):
         if map[0+j][1] ==n and map[1+j][1]==n and map[2+j][1] ==n:
             return True
@@ -38,7 +38,7 @@ def is_winning(map, n):
         if map[0+j][1] ==n and map[4][1]==n and map[8-j][1] ==n:
             return True
         
-def draw_cross(center_point):
+def draw_cross(center_point:tuple)->pygame.Rect:
     pygame.draw.lines(background, (0,0,0), False, 
     [[center_point[0]-45,center_point[1]-45], 
     center_point, 
@@ -48,7 +48,7 @@ def draw_cross(center_point):
     center_point, 
     [center_point[0]+45, center_point[1]+45]], 8)
 
-def draw_circle(center_point):
+def draw_circle(center_point:tuple)->pygame.Rect:
     pygame.draw.circle(background, (0,0,0), center_point, 45, 7)
 
 def initialize_background():
@@ -58,7 +58,7 @@ def initialize_background():
     counter = 0
     return list_rect, map, counter 
 
-def message_screen(text):
+def message_screen(text:str):
     background.fill((220,220,220))
     text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), text, True, (0,0,0))
     background.blit(text, (50, x/2))
