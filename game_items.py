@@ -1,6 +1,12 @@
 import pygame
 
-def fields_list(background, y) -> list:
+x = 600 #side lenght of the screen square
+y = x/3 #side lenght of the field square
+screen = pygame.display.set_mode((x, x))
+background = pygame.Surface(screen.get_size())
+background = background.convert()
+
+def fields_list() -> list:
     list_rect = []
     for i in range(3):
         for j in range(3):
@@ -8,7 +14,7 @@ def fields_list(background, y) -> list:
             list_rect.append(rect)
     return list_rect
 
-def add_field_value(background, y) -> list:
+def add_field_value() -> list:
     map = []
     for i in range(3):
         for j in range(3):
@@ -32,7 +38,7 @@ def is_winning(map, n):
         if map[0+j][1] ==n and map[4][1]==n and map[8-j][1] ==n:
             return True
         
-def draw_cross(background, center_point):
+def draw_cross(center_point):
     pygame.draw.lines(background, (0,0,0), False, 
     [[center_point[0]-45,center_point[1]-45], 
     center_point, 
@@ -42,12 +48,17 @@ def draw_cross(background, center_point):
     center_point, 
     [center_point[0]+45, center_point[1]+45]], 8)
 
-def draw_circle(background, center_point):
+def draw_circle(center_point):
     pygame.draw.circle(background, (0,0,0), center_point, 45, 7)
 
-def initialize_background(background, y):
+def initialize_background():
     background.fill((0, 0, 0))
-    list_rect = fields_list(background, y)
-    map = add_field_value(background, y)
+    list_rect = fields_list()
+    map = add_field_value()
     counter = 0
     return list_rect, map, counter 
+
+def message_screen(text):
+    background.fill((220,220,220))
+    text = pygame.font.Font.render(pygame.font.SysFont("Dyuthi", 42), text, True, (0,0,0))
+    background.blit(text, (50, x/2))
