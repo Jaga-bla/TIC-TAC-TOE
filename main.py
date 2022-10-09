@@ -42,17 +42,17 @@ def main():
                                     counter += 1
                                     draw_cross(background, rect.center)
                                     change_field_value(rect, map, 1)
-                                    new_list = list_rect
-                                    new_list.remove(rect)
-                                    random_rect = choice_ai(map, new_list)
+                                    empty_fields_list = list_rect
+                                    empty_fields_list.remove(rect)
+                                    random_rect = choice_ai(map, empty_fields_list)
                     elif event.type == pygame.MOUSEBUTTONUP:
                         if (counter%2)!=0:
-                            for rect in new_list:
+                            for rect in empty_fields_list:
                                 if pygame.Rect.colliderect(rect, random_rect):
                                     counter += 1
                                     draw_circle(background, rect.center)
                                     change_field_value(rect, map, -1)
-                                    new_list.remove(rect)
+                                    empty_fields_list.remove(rect)
                 except:
                     break   
         screen.blit(background, (0, 0))
