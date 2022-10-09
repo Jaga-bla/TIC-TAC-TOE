@@ -51,13 +51,15 @@ def is_winning(map:list, n:int)->bool:
             return True
         
 def draw_cross(center_point:tuple)-> pygame.Rect:
-    list_of_points = [[center_point[0]-45,center_point[1]-45], 
-    center_point, 
-    [center_point[0]-45, center_point[1]+45], 
-    center_point, 
-    [center_point[0]+45, center_point[1]-45],
-    center_point, 
-    [center_point[0]+45, center_point[1]+45]]
+    list_of_points = [
+        [center_point[0]-45,center_point[1]-45], 
+        center_point, 
+        [center_point[0]-45, center_point[1]+45], 
+        center_point, 
+        [center_point[0]+45, center_point[1]-45],
+        center_point, 
+        [center_point[0]+45, center_point[1]+45]
+        ]
     color = (0,0,0)
     joint_end_points = False
     line_thickness = 8
