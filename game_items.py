@@ -22,7 +22,7 @@ def add_field_value() -> list:
             map.append([rect, 0])
     return map
 
-def change_field_value(rect, map:list, n:int):
+def change_field_value(rect:pygame.Rect, map:list, n:int):
     for i in map:
         if i[0] == rect:
             i[1] = n
